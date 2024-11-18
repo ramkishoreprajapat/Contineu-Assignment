@@ -4,7 +4,7 @@ import '../../../core/constants/strings.dart';
 import '../../../core/enum/custom_scaffold_enum.dart';
 import '../../../core/utils/no_space_input_formatter.dart';
 import '../../../core/utils/utility.dart';
-import '../../../logic/bloc/sign_in_bloc/bloc/sign_in_bloc.dart';
+import '../../../logic/bloc/sign_in_bloc/sign_in_bloc.dart';
 import '../../router/app_router.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_scaffold.dart';

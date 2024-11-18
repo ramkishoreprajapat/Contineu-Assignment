@@ -1,3 +1,4 @@
+import 'package:contineu_assignment/presentation/screens/tasks/task_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/constants/strings.dart';
@@ -6,11 +7,10 @@ import 'core/theme/util.dart';
 import 'core/utils/navigation_service.dart';
 import 'logic/bloc/autentication_bloc/authentication_bloc.dart';
 import 'logic/bloc/forget_password_bloc/forget_password_bloc.dart';
-import 'logic/bloc/sign_in_bloc/bloc/sign_in_bloc.dart';
+import 'logic/bloc/sign_in_bloc/sign_in_bloc.dart';
 import 'logic/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'presentation/router/app_router.dart';
 import 'presentation/screens/authentications/login_screen.dart';
-import 'presentation/screens/home/home_screen.dart';
 
 class MyAppView extends StatelessWidget {
   final AppRouter appRouter;
@@ -61,7 +61,7 @@ class MyAppView extends StatelessWidget {
                         ? const HomeScreen()
                         : const SplashScreen(),
               ); */
-              return const HomeScreen();
+              return const TaskListScreen();
             } else {
               /* return FutureBuilder(
                 future: Future.delayed(const Duration(seconds: 3)),

@@ -2,23 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/constants/strings.dart';
 import '../../../core/enum/custom_scaffold_enum.dart';
-import '../../../core/utils/no_space_input_formatter.dart';
+import '../../../core/utils/first_character_no_space_input_formatter.dart';
 import '../../../core/utils/utility.dart';
 import '../../../logic/bloc/forget_password_bloc/forget_password_bloc.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_scaffold.dart';
 import '../widgets/custom_text_field.dart';
 
-final _emailController = TextEditingController();
+final _titleController = TextEditingController();
+final _descriptionController = TextEditingController();
 
-class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({super.key});
+class AddTaskdScreen extends StatefulWidget {
+  const AddTaskdScreen({super.key});
 
   @override
-  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+  State<AddTaskdScreen> createState() => _AddTaskdScreenState();
 }
 
-class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
+class _AddTaskdScreenState extends State<AddTaskdScreen> {
   @override
   void initState() {
     super.initState();
@@ -31,7 +32,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       listener: (context, state) {
         if (state is ForgetPasswordSuccess) {
           isShowLoader(false);
-          _emailController.clear();
+          _titleController.clear();
           Utility().showSnackBar(Strings
               .passwordResetLinkHasBeenSuccessfullySentToYourMailAddress);
           Navigator.of(context).pop();
@@ -41,9 +42,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         }
       },
       child: CustomScaffold(
-        costomScaffoldEnum:
-            CustomScaffoldEnum.scaffoldWithSafeAreaWithoutAppBar,
-        appBartitle: '',
+        costomScaffoldEnum: CustomScaffoldEnum.scaffoldWithSafeAreaWithAppBar,
+        appBartitle: Strings.addTask,
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -55,55 +55,36 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: SizedBox(
-                    height: 60,
-                    width: 60,
-                    child: CircleAvatar(
-                      child: Image.asset(
-                        'images/ic_logo.png',
-                        width: 60,
-                        height: 60,
-                      ),
-                    ),
-                  ),
+              children: [               
+                // Title
+                CustomTextField(
+                  controller: _titleController,
+                  hintText: Strings.title,
+                  obscureText: false,
+                  maxLength: 256,
+                  textInputType: TextInputType.name,
+                  textCapitalization: TextCapitalization.words,
+                  textInputFormatter: [FirstCharacterNoSpaceInputFormatter()],
+                  textInputAction: TextInputAction.next,
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  Strings.forgetPassword,
-                  textAlign: TextAlign.left,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  Strings.enterYourEmailForResetYourPassword,
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
+                //Description
                 const SizedBox(
                   height: 24,
                 ),
-                //Email or Phone Number
                 CustomTextField(
-                  controller: _emailController,
-                  hintText: Strings.emailAddress,
+                  controller: _descriptionController,
+                  hintText: Strings.description,
                   obscureText: false,
-                  maxLength: 256,
-                  textInputType: TextInputType.emailAddress,
-                  textInputFormatter: [NoSpaceInputFormatter()],
+                  maxLength: 1024,
+                  textInputType: TextInputType.name,
+                  textCapitalization: TextCapitalization.words,
+                  textInputFormatter: [FirstCharacterNoSpaceInputFormatter()],
                   textInputAction: TextInputAction.next,
                 ),
                 const SizedBox(
                   height: 40,
                 ),
+                
                 CustomButton(
                     title: Strings.submit,
                     isLoading: isLoading,
@@ -120,16 +101,17 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   }
 
   void _checkForgetPassword(BuildContext context) {
-    if (_emailController.text.isEmpty) {
-      Utility().showSnackBar(Strings.pleaseEnterEmailAddress);
-    } else if (!Utility().isValidEmail(_emailController.text)) {
-      Utility().showSnackBar(Strings.pleaseEnterValidEmailAddress);
+    if (_titleController.text.isEmpty) {
+      Utility().showSnackBar(Strings.pleaseEnterTitle);
+    }
+    if (_descriptionController.text.isEmpty) {
+      Utility().showSnackBar(Strings.pleaseEnterDescription);
     } else {
       isShowLoader(true);
 
       context
           .read<ForgetPasswordBloc>()
-          .add(ForgetPasswordRequired(_emailController.text));
+          .add(ForgetPasswordRequired(_titleController.text));
     }
   }
 

@@ -1,10 +1,11 @@
+import 'package:contineu_assignment/presentation/screens/tasks/add_task_screen.dart';
+import 'package:contineu_assignment/presentation/screens/tasks/task_list_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/authentications/forget_password.dart';
 import '../screens/authentications/login_screen.dart';
 import '../screens/authentications/sign_up_screen.dart';
 import '../screens/authentications/splash_screen.dart';
-import '../screens/home/home_screen.dart';
 
 class AppRouter {
   static const String login = 'login';
@@ -12,6 +13,7 @@ class AppRouter {
   static const String home = 'home';
   static const String splash = 'splash';
   static const String forgetPassword = 'forgetPassword';
+  static const String addTask = 'addTask';
 
   Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -32,9 +34,11 @@ class AppRouter {
       case signUp:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case home:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) => const TaskListScreen());
       case forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+      case addTask:
+        return MaterialPageRoute(builder: (_) => const AddTaskdScreen());  
       default:
         throw Exception('Route not found');
     }

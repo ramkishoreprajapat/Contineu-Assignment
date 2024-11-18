@@ -35,5 +35,10 @@ class Strings {
   static const String enterYourEmailForResetYourPassword = "Enter your email for reset your password.";
   static const String submit = "Submit";
   static const String passwordResetLinkHasBeenSuccessfullySentToYourMailAddress = "Password reset link has been successfully sent to your mail address.";
+  static const String addTask = "Add Task";
+  static const String title = "Title";
+  static const String description = "Description";
+  static const String pleaseEnterTitle = "Please enter title.";
+  static const String pleaseEnterDescription = "Please enter description.";
 
 }

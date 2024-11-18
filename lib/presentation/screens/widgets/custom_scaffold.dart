@@ -10,7 +10,8 @@ class CustomScaffold extends StatelessWidget {
       required this.safeAreaChild,
       this.bottomNavigationBar,
       this.actions,
-      this.leading});
+      this.leading, 
+      this.floatingActionButton});
 
   final String appBartitle;
   final CustomScaffoldEnum costomScaffoldEnum;
@@ -18,6 +19,7 @@ class CustomScaffold extends StatelessWidget {
   final NavigationBar? bottomNavigationBar;
   final List<Widget>? actions;
   final Widget? leading;
+  final FloatingActionButton? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class CustomScaffold extends StatelessWidget {
   // If we want to show witout app bar with safe area.
   Scaffold scaffoldWithSafeAreaWithoutAppBar() {
     return Scaffold(
-      body: SafeArea(child: safeAreaChild),
+      body: SafeArea(child: safeAreaChild),      
     );
   }
 
@@ -52,13 +54,14 @@ class CustomScaffold extends StatelessWidget {
         title: Text(appBartitle),
         actions: actions,
         leading: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
           child: leading,
         ),
         leadingWidth: 52,        
       ),
       body: SafeArea(child: safeAreaChild),
       bottomNavigationBar: bottomNavigationBar,
+      floatingActionButton: floatingActionButton,
     );
   }
 }

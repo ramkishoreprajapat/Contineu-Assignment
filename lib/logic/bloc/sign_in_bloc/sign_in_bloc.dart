@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:user_repository/user_repository.dart';
 
-import '../../../../core/utils/log_in_and_sign_up_with_email_and_pass_failure.dart';
-import '../../../../core/utils/utility.dart';
+import '../../../core/utils/log_in_and_sign_up_with_email_and_pass_failure.dart';
+import '../../../core/utils/utility.dart';
 
 
 part 'sign_in_event.dart';
