@@ -38,7 +38,7 @@ class FirebaseUserRepo implements UserRepository {
           email: myUser.email, password: password);
       increaseReferCode();
       myUser = myUser.copyWith(userId: user.user!.uid);
-      
+
       return myUser;
     } catch (e) {
       log(e.toString());
@@ -48,8 +48,7 @@ class FirebaseUserRepo implements UserRepository {
 
   @override
   Future<void> setUserData(MyUser myUser) async {
-    try {    
-
+    try {
       await userCollection
           .doc(myUser.userId)
           .set(myUser.toEntity().toDocument());
@@ -58,28 +57,28 @@ class FirebaseUserRepo implements UserRepository {
       rethrow;
     }
   }
-  
+
   @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
-  
+
   @override
   Future<void> forgetPassword(String email) async {
     try {
-      await _firebaseAuth.sendPasswordResetEmail(email: email);      
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
     } catch (e) {
       log(e.toString());
       rethrow;
     }
   }
-  
+
   @override
   Future<void> increaseReferCode() async {
     try {
-      
       var quniqueFieldsDoc = commonCollection.doc('uniqueFields');
-      await quniqueFieldsDoc.set({"lastReferId": FieldValue.increment(1)}, SetOptions(merge : true));
+      await quniqueFieldsDoc.set(
+          {"lastReferId": FieldValue.increment(1)}, SetOptions(merge: true));
     } catch (e) {
       rethrow;
     }

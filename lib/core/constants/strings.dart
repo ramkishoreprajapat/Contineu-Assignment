@@ -40,5 +40,7 @@ class Strings {
   static const String description = "Description";
   static const String pleaseEnterTitle = "Please enter title.";
   static const String pleaseEnterDescription = "Please enter description.";
+  static const String someThingWentWrong = "Something went wrong!";
+  static const String taskAddedSuccessfully = "Task added successfully.";
 
 }

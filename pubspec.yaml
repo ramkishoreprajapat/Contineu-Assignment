@@ -44,6 +44,8 @@ dependencies:
   shared_preferences: ^2.3.1
   user_repository:
     path: packages/user_repository
+  task_repository:  
+    path: packages/task_repository
 
 dev_dependencies:
   flutter_test:

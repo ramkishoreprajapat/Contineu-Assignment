@@ -5,6 +5,7 @@ import 'core/constants/strings.dart';
 import 'core/theme/theme.dart';
 import 'core/theme/util.dart';
 import 'core/utils/navigation_service.dart';
+import 'logic/bloc/add_task_bloc/add_task_bloc.dart';
 import 'logic/bloc/autentication_bloc/authentication_bloc.dart';
 import 'logic/bloc/forget_password_bloc/forget_password_bloc.dart';
 import 'logic/bloc/sign_in_bloc/sign_in_bloc.dart';
@@ -42,6 +43,9 @@ class MyAppView extends StatelessWidget {
           create: (context) => ForgetPasswordBloc(
               userRepository:
                   context.read<AuthenticationBloc>().userRepository),
+        ),
+        BlocProvider(
+          create: (context) => AddTaskBloc(context.read<AddTaskBloc>().taskRepository),
         ),
       ],
       child: MaterialApp(

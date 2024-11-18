@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:task_repository/task_repository.dart';
 import 'package:user_repository/user_repository.dart';
 import 'core/utils/shared_preference_singleton.dart';
 import 'firebase_options.dart';
@@ -18,5 +19,9 @@ Future<void> main() async {
 
   Bloc.observer = SimpleBlocObserver();
 
-  runApp(MyApp(appRouter: AppRouter(), userRepository: FirebaseUserRepo()));
+  runApp(MyApp(
+    appRouter: AppRouter(),
+    userRepository: FirebaseUserRepo(),
+    taskRepository: FirebaseTaskRepo(),
+  ));
 }

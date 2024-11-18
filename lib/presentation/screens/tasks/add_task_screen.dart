@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_repository/task_repository.dart';
 import '../../../core/constants/strings.dart';
 import '../../../core/enum/custom_scaffold_enum.dart';
 import '../../../core/utils/first_character_no_space_input_formatter.dart';
 import '../../../core/utils/utility.dart';
-import '../../../logic/bloc/forget_password_bloc/forget_password_bloc.dart';
+import '../../../logic/bloc/add_task_bloc/add_task_bloc.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_scaffold.dart';
 import '../widgets/custom_text_field.dart';
@@ -28,15 +29,15 @@ class _AddTaskdScreenState extends State<AddTaskdScreen> {
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ForgetPasswordBloc, ForgetPasswordState>(
+    return BlocListener<AddTaskBloc, AddTaskState>(
       listener: (context, state) {
-        if (state is ForgetPasswordSuccess) {
+        if (state is AddTaskSuccess) {
           isShowLoader(false);
           _titleController.clear();
-          Utility().showSnackBar(Strings
-              .passwordResetLinkHasBeenSuccessfullySentToYourMailAddress);
+          _descriptionController.clear();
+          Utility().showSnackBar(Strings.taskAddedSuccessfully);
           Navigator.of(context).pop();
-        } else if (state is ForgetPasswordFailure) {
+        } else if (state is AddTaskFailure) {
           isShowLoader(false);
           Utility().showSnackBar(state.message!);
         }
@@ -55,7 +56,7 @@ class _AddTaskdScreenState extends State<AddTaskdScreen> {
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [               
+              children: [
                 // Title
                 CustomTextField(
                   controller: _titleController,
@@ -76,7 +77,7 @@ class _AddTaskdScreenState extends State<AddTaskdScreen> {
                   hintText: Strings.description,
                   obscureText: false,
                   maxLength: 1024,
-                  textInputType: TextInputType.name,
+                  textInputType: TextInputType.multiline,
                   textCapitalization: TextCapitalization.words,
                   textInputFormatter: [FirstCharacterNoSpaceInputFormatter()],
                   textInputAction: TextInputAction.next,
@@ -84,11 +85,11 @@ class _AddTaskdScreenState extends State<AddTaskdScreen> {
                 const SizedBox(
                   height: 40,
                 ),
-                
+
                 CustomButton(
                     title: Strings.submit,
                     isLoading: isLoading,
-                    onPressed: () => {_checkForgetPassword(context)}),
+                    onPressed: () => {_checkAddTask(context)}),
                 const SizedBox(
                   height: 40,
                 ),
@@ -100,18 +101,20 @@ class _AddTaskdScreenState extends State<AddTaskdScreen> {
     );
   }
 
-  void _checkForgetPassword(BuildContext context) {
+  void _checkAddTask(BuildContext context) {
     if (_titleController.text.isEmpty) {
       Utility().showSnackBar(Strings.pleaseEnterTitle);
-    }
-    if (_descriptionController.text.isEmpty) {
+    } else if (_descriptionController.text.isEmpty) {
       Utility().showSnackBar(Strings.pleaseEnterDescription);
     } else {
       isShowLoader(true);
 
-      context
-          .read<ForgetPasswordBloc>()
-          .add(ForgetPasswordRequired(_titleController.text));
+      Task task = Task.empty;
+      task = task.copyWith(
+          title: _titleController.text,
+          description: _descriptionController.text);
+
+      context.read<AddTaskBloc>().add(AddTaskRequired(task));
     }
   }
 
