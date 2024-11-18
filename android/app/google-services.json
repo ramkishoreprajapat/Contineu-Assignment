@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "768777817488",
+    "project_id": "contineu-assignment",
+    "storage_bucket": "contineu-assignment.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768777817488:android:629e1387a94bece1e93715",
+        "android_client_info": {
+          "package_name": "com.example.contineu_assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwh1jIeiDaVbwPm1pWR3Qo3EkBuqD8l_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
