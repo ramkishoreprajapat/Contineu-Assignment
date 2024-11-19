@@ -46,7 +46,8 @@ I have developed an application that leverages Firebase for backend services and
    </td>
   </tr>
 
-     <tr>
+  
+<tr>
    <td>3.
    </td>
    <td>Forget Password Screen
@@ -59,7 +60,7 @@ I have developed an application that leverages Firebase for backend services and
    </td>
   </tr>
 
-     <tr>
+ <tr>
    <td>4.
    </td>
    <td>Empty Task List
@@ -72,7 +73,7 @@ I have developed an application that leverages Firebase for backend services and
    </td>
   </tr>
 
-     <tr>
+<tr>
    <td>5.
    </td>
    <td>Task List
@@ -86,7 +87,7 @@ I have developed an application that leverages Firebase for backend services and
   </tr>
 
 
-     <tr>
+<tr>
    <td>6.
    </td>
    <td>Add Task
@@ -99,7 +100,7 @@ I have developed an application that leverages Firebase for backend services and
    </td>
   </tr>
 
-     <tr>
+<tr>
    <td>7.
    </td>
    <td>Update Task
