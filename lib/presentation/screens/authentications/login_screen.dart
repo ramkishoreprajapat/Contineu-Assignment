@@ -159,10 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Utility().showSnackBar(Strings.pleaseEnterValidEmailAddress);
     } else if (_passwordController.text.isEmpty) {
       Utility().showSnackBar(Strings.pleaseEnterPassword);
-    } else {
-      // SharedPreferenceSingleton()
-      //     .setBool(SharedPreferenceSingleton.isLogin, true);
-
+    } else {    
       isShowLoader(true);
       context
           .read<SignInBloc>()

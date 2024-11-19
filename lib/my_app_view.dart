@@ -5,6 +5,7 @@ import 'core/constants/strings.dart';
 import 'core/theme/theme.dart';
 import 'core/theme/util.dart';
 import 'core/utils/navigation_service.dart';
+import 'core/utils/shared_preference_singleton.dart';
 import 'logic/bloc/add_task_bloc/add_task_bloc.dart';
 import 'logic/bloc/autentication_bloc/authentication_bloc.dart';
 import 'logic/bloc/forget_password_bloc/forget_password_bloc.dart';
@@ -14,7 +15,7 @@ import 'logic/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'presentation/router/app_router.dart';
 import 'presentation/screens/authentications/login_screen.dart';
 
-class MyAppView extends StatelessWidget {
+class MyAppView extends StatefulWidget {
   final AppRouter appRouter;
   const MyAppView({
     super.key,
@@ -22,8 +23,22 @@ class MyAppView extends StatelessWidget {
   });
 
   @override
+  State<MyAppView> createState() => _MyAppViewState();
+}
+
+class _MyAppViewState extends State<MyAppView> {
+  bool isDarkTheme = false;
+
+  @override
+  void initState() { 
+    super.initState();
+    isDarkTheme = SharedPreferenceSingleton().getBool(SharedPreferenceSingleton.isDarkTheme);  
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final brightness = View.of(context).platformDispatcher.platformBrightness;
+    //If you want theme according to device setting then use below line
+    //final brightness = View.of(context).platformDispatcher.platformBrightness;
 
     TextTheme textTheme = createTextTheme(context, "ABeeZee", "ABeeZee");
 
@@ -46,39 +61,25 @@ class MyAppView extends StatelessWidget {
                   context.read<AuthenticationBloc>().userRepository),
         ),
         BlocProvider(
-          create: (context) => AddTaskBloc(context.read<AddTaskBloc>().taskRepository),
+          create: (context) =>
+              AddTaskBloc(context.read<AddTaskBloc>().taskRepository),
         ),
         BlocProvider(
-          create: (context) => ListTaskBloc(context.read<ListTaskBloc>().taskRepository),
+          create: (context) =>
+              ListTaskBloc(context.read<ListTaskBloc>().taskRepository),
         ),
       ],
       child: MaterialApp(
         navigatorKey: NavigationService.navigatorKey,
         title: Strings.appName,
-        theme: brightness == Brightness.light ? theme.light() : theme.dark(),
+        theme: SharedPreferenceSingleton().getBool(SharedPreferenceSingleton.isDarkTheme) ? theme.dark() : theme.light(),
         debugShowCheckedModeBanner: false,
-        // initialRoute: AppRouter.login,
-        onGenerateRoute: appRouter.onGenerateRoutes,
+        onGenerateRoute: widget.appRouter.onGenerateRoutes,
         home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           builder: (context, state) {
             if (state.status == AuthenticationStatus.authenticated) {
-              /* return FutureBuilder(
-                future: Future.delayed(const Duration(seconds: 3)),
-                builder: (context, snapshot) =>
-                    snapshot.connectionState == ConnectionState.done
-                        ? const HomeScreen()
-                        : const SplashScreen(),
-              ); */
               return const TaskListScreen();
             } else {
-              /* return FutureBuilder(
-                future: Future.delayed(const Duration(seconds: 3)),
-                builder: (context, snapshot) =>
-                    snapshot.connectionState == ConnectionState.done
-                        ? const LoginScreen()
-                        : const SplashScreen(),
-              ); */
-
               return const LoginScreen();
             }
           },

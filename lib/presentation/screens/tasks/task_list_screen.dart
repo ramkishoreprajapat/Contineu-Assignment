@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../../core/enum/custom_scaffold_enum.dart';
+import '../../../core/utils/shared_preference_singleton.dart';
 import '../../../logic/bloc/sign_in_bloc/sign_in_bloc.dart';
 import '../../../logic/bloc/list_task_bloc/list_task_bloc.dart';
 import '../widgets/custom_scaffold.dart';
@@ -27,7 +28,23 @@ class _TaskListScreenState extends State<TaskListScreen> {
     return CustomScaffold(
         appBartitle: Strings.tasks,
         costomScaffoldEnum: CustomScaffoldEnum.scaffoldWithSafeAreaWithAppBar,
+        leading: const Icon(
+          Icons.account_circle,
+          size: 32,
+        ),
         actions: [
+          IconButton(
+            onPressed: () {
+              SharedPreferenceSingleton().setBool(
+                  SharedPreferenceSingleton.isDarkTheme,
+                  !SharedPreferenceSingleton()
+                      .getBool(SharedPreferenceSingleton.isDarkTheme));
+            },
+            icon: Icon(SharedPreferenceSingleton()
+                    .getBool(SharedPreferenceSingleton.isDarkTheme)
+                ? Icons.light_mode
+                : Icons.dark_mode),
+          ),
           IconButton(
             onPressed: () {
               context.read<SignInBloc>().add(const SignOutRequired());
