@@ -1,16 +1,115 @@
-# contineu_assignment
+# Contineu Assignment
 
-A new Flutter project.
+Create an app, which contains a create account page, login page, and a logout option. Once 
+logged in, display a simple to-do list. List should have the following functionality - adding, 
+updating & deleting items.- Create Account - Login- Reset Password- Main Task List- Adding/Deleting/Editing Tasks- Dark/Light Mode Toggle
 
-## Getting Started
+## About App
 
-This project is a starting point for a Flutter application.
+I have developed an application that leverages Firebase for backend services and BLoC (Business Logic Component) for state management. This combination ensures a scalable, reactive, and efficient app architecture.
 
-A few resources to get you started if this is your first Flutter project:
+<table>
+  <tr>
+   <td><strong>S No.</strong>
+   </td>
+   <td><strong>Screen Name</strong>
+   </td>
+   <td><strong>Light Theme</strong>
+   </td>
+    <td><strong>Dark Theme</strong>
+   </td>
+  </tr>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+ <tr>
+   <td>1.
+   </td>
+   <td>Login Screen
+   </td>
+   <td>
+     <img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/login_light.png" width="150"/>
+   </td>
+   <td>
+<img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/login_dark.png" width="150"/>
+   </td>
+  </tr>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   <tr>
+   <td>2.
+   </td>
+   <td>Sign Up Screen
+   </td>
+   <td>
+     <img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/signup_light.png" width="150"/>
+   </td>
+   <td>
+<img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/signup_dark.png" width="150"/>
+   </td>
+  </tr>
+
+     <tr>
+   <td>3.
+   </td>
+   <td>Forget Password Screen
+   </td>
+   <td>
+     <img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/forget_light.png" width="150"/>
+   </td>
+   <td>
+<img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/forget_dark.png" width="150"/>
+   </td>
+  </tr>
+
+     <tr>
+   <td>4.
+   </td>
+   <td>Empty Task List
+   </td>
+   <td>
+     <img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/empty_task_list_light.png" width="150"/>
+   </td>
+   <td>
+<img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/empty_task_list_dark.png" width="150"/>
+   </td>
+  </tr>
+
+     <tr>
+   <td>5.
+   </td>
+   <td>Task List
+   </td>
+   <td>
+     <img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/task_list_light.png" width="150"/>
+   </td>
+   <td>
+<img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/task_list_dark.png" width="150"/>
+   </td>
+  </tr>
+
+
+     <tr>
+   <td>6.
+   </td>
+   <td>Add Task
+   </td>
+   <td>
+     <img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/add_task_light.png" width="150"/>
+   </td>
+   <td>
+<img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/add_task_light.png" width="150"/>
+   </td>
+  </tr>
+
+     <tr>
+   <td>7.
+   </td>
+   <td>Update Task
+   </td>
+   <td>
+     <img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/update_task_light.png" width="150"/>
+   </td>
+   <td>
+<img src="https://github.com/ramkishoreprajapat/contineu_assignment/blob/main/output/update_task_dark.png" width="150"/>
+   </td>
+  </tr>
+
+</table>  
