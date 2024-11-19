@@ -12,7 +12,9 @@ class CustomTextField extends StatelessWidget {
     this.textCapitalization, 
     this.textInputFormatter,
     this.textInputAction, 
-    this.suffixIcon
+    this.suffixIcon,
+    this.minLines = 1,
+    this.maxLines = 1,
   });
 
   final String hintText;
@@ -24,6 +26,8 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputAction? textInputAction;
   final IconButton? suffixIcon;
+  final int minLines;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,8 @@ class CustomTextField extends StatelessWidget {
       textCapitalization: textCapitalization ?? TextCapitalization.none,
       obscureText: obscureText,
       maxLength: maxLength,
-      maxLines: 1,
+      maxLines: maxLines,
+      minLines: minLines,
       keyboardType: textInputType,
       inputFormatters: textInputFormatter,
       textInputAction: textInputAction,

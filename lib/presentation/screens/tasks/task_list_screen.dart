@@ -78,17 +78,17 @@ class _TaskListScreenState extends State<TaskListScreen> {
                           return Card(
                             child: ListTile(
                               title: Text(
-                                item.title.length > 10
-                                    ? '${item.title.substring(0, 10)}...'
+                                item.title.length > 24
+                                    ? '${item.title.substring(0, 24)}...'
                                     : item.title,
                                 maxLines: 1,
                                 style: const TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 24,
                                 ),
                               ),
                               subtitle: Text(
-                                  item.description.length > 10
-                                      ? '${item.description.substring(0, 10)}...'
+                                  item.description.length > 24
+                                      ? '${item.description.substring(0, 24)}...'
                                       : item.description,
                                   maxLines: 1,
                                   style: const TextStyle(fontSize: 16)),

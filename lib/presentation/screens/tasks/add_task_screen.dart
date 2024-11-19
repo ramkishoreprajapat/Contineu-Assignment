@@ -96,11 +96,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   controller: _descriptionController,
                   hintText: Strings.description,
                   obscureText: false,
-                  maxLength: 1024,
+                  maxLength: 1024,                  
                   textInputType: TextInputType.multiline,
                   textCapitalization: TextCapitalization.words,
                   textInputFormatter: [FirstCharacterNoSpaceInputFormatter()],
                   textInputAction: TextInputAction.next,
+                  maxLines: 5
                 ),
                 const SizedBox(
                   height: 40,

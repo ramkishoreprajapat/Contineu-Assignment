@@ -48,5 +48,6 @@ class Strings {
   static const String noTaskAddedYet = "No task added yet.";
   static const String tasks = "Tasks";
   static const String loading = "Loading...";
+  static const String sendLink = "Send Link";
 
 }

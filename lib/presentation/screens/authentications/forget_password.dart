@@ -42,7 +42,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       },
       child: CustomScaffold(
         costomScaffoldEnum:
-            CustomScaffoldEnum.scaffoldWithSafeAreaWithoutAppBar,
+            CustomScaffoldEnum.scaffoldWithSafeAreaWithAppBar,
         appBartitle: '',
         leading: IconButton(
           onPressed: () {
@@ -105,7 +105,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   height: 40,
                 ),
                 CustomButton(
-                    title: Strings.add,
+                    title: Strings.sendLink,
                     isLoading: isLoading,
                     onPressed: () => {_checkForgetPassword(context)}),
                 const SizedBox(
