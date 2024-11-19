@@ -8,6 +8,10 @@ updating & deleting items.- Create Account - Login- Reset Password- Main Task Li
 
 I have developed an application that leverages Firebase for backend services and BLoC (Business Logic Component) for state management. This combination ensures a scalable, reactive, and efficient app architecture.
 
+
+https://github.com/user-attachments/assets/9e4c3d3f-2e96-4e3f-aa34-b9d393c5feda
+
+
 <table>
   <tr>
    <td><strong>S No.</strong>
