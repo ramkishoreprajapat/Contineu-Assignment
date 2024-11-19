@@ -11,8 +11,6 @@ class CustomButton extends StatelessWidget {
   final String title;
   final VoidCallback? onPressed;
   final bool isLoading;
-  // With argument you can use function like below
-  // final Function(BuildContext) onPressed;
 
   @override
   Widget build(BuildContext context) {
