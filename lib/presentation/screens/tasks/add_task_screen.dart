@@ -13,17 +13,35 @@ import '../widgets/custom_text_field.dart';
 final _titleController = TextEditingController();
 final _descriptionController = TextEditingController();
 
-class AddTaskdScreen extends StatefulWidget {
-  const AddTaskdScreen({super.key});
+class AddTaskScreen extends StatefulWidget {
+  final String id;
+  final String title;
+  final String description;
+
+  const AddTaskScreen(
+      {super.key,
+      required this.id,
+      required this.title,
+      required this.description});
 
   @override
-  State<AddTaskdScreen> createState() => _AddTaskdScreenState();
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
 }
 
-class _AddTaskdScreenState extends State<AddTaskdScreen> {
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  bool isUpdate = false;
   @override
   void initState() {
     super.initState();
+
+    _titleController.clear();
+    _descriptionController.clear();
+    
+    if (widget.id.isNotEmpty) {
+      isUpdate = true;
+      _titleController.text = widget.title;
+      _descriptionController.text = widget.description;
+    }
   }
 
   bool isLoading = false;
@@ -35,8 +53,10 @@ class _AddTaskdScreenState extends State<AddTaskdScreen> {
           isShowLoader(false);
           _titleController.clear();
           _descriptionController.clear();
-          Utility().showSnackBar(Strings.taskAddedSuccessfully);
-          Navigator.of(context).pop();
+          Utility().showSnackBar(isUpdate
+              ? Strings.taskUpdatedSuccessfully
+              : Strings.taskAddedSuccessfully);
+          Navigator.pop(context, "isRefresh");
         } else if (state is AddTaskFailure) {
           isShowLoader(false);
           Utility().showSnackBar(state.message!);
@@ -44,7 +64,7 @@ class _AddTaskdScreenState extends State<AddTaskdScreen> {
       },
       child: CustomScaffold(
         costomScaffoldEnum: CustomScaffoldEnum.scaffoldWithSafeAreaWithAppBar,
-        appBartitle: Strings.addTask,
+        appBartitle: isUpdate ? Strings.updateTask : Strings.addTask,
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -87,7 +107,7 @@ class _AddTaskdScreenState extends State<AddTaskdScreen> {
                 ),
 
                 CustomButton(
-                    title: Strings.submit,
+                    title: isUpdate ? Strings.update : Strings.add,
                     isLoading: isLoading,
                     onPressed: () => {_checkAddTask(context)}),
                 const SizedBox(
@@ -111,6 +131,7 @@ class _AddTaskdScreenState extends State<AddTaskdScreen> {
 
       Task task = Task.empty;
       task = task.copyWith(
+          id: widget.id,
           title: _titleController.text,
           description: _descriptionController.text);
 

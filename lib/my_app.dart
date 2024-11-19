@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_repository/task_repository.dart';
 import 'package:user_repository/user_repository.dart';
 import 'logic/bloc/autentication_bloc/authentication_bloc.dart';
+import 'logic/bloc/list_task_bloc/list_task_bloc.dart';
 import 'my_app_view.dart';
 import 'presentation/router/app_router.dart';
 
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => AddTaskBloc(taskRepository),
+        ),
+        RepositoryProvider(
+          create: (context) => ListTaskBloc(taskRepository),
         ),
       ],
       child: MyAppView(

@@ -16,6 +16,11 @@ class AppRouter {
   static const String addTask = 'addTask';
 
   Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
+    Map? args;
+    if (routeSettings.arguments != null) {
+      args = routeSettings.arguments as Map;
+    }
+
     switch (routeSettings.name) {
       case splash:
         /*  {
@@ -38,7 +43,12 @@ class AppRouter {
       case forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case addTask:
-        return MaterialPageRoute(builder: (_) => const AddTaskdScreen());  
+        return MaterialPageRoute(
+            builder: (_) => AddTaskScreen(
+                  id: args?['id'] ?? '',
+                  title: args?['title'] ?? '',
+                  description: args?['description'] ?? '',
+                ));
       default:
         throw Exception('Route not found');
     }

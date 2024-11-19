@@ -8,6 +8,7 @@ import 'core/utils/navigation_service.dart';
 import 'logic/bloc/add_task_bloc/add_task_bloc.dart';
 import 'logic/bloc/autentication_bloc/authentication_bloc.dart';
 import 'logic/bloc/forget_password_bloc/forget_password_bloc.dart';
+import 'logic/bloc/list_task_bloc/list_task_bloc.dart';
 import 'logic/bloc/sign_in_bloc/sign_in_bloc.dart';
 import 'logic/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'presentation/router/app_router.dart';
@@ -46,6 +47,9 @@ class MyAppView extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AddTaskBloc(context.read<AddTaskBloc>().taskRepository),
+        ),
+        BlocProvider(
+          create: (context) => ListTaskBloc(context.read<ListTaskBloc>().taskRepository),
         ),
       ],
       child: MaterialApp(

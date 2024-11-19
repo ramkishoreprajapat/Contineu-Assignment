@@ -105,7 +105,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   height: 40,
                 ),
                 CustomButton(
-                    title: Strings.submit,
+                    title: Strings.add,
                     isLoading: isLoading,
                     onPressed: () => {_checkForgetPassword(context)}),
                 const SizedBox(

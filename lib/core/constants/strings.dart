@@ -33,14 +33,20 @@ class Strings {
   static const String weakPassword = "Please enter a stronger password.";
   static const String forgetPassword = "Forget Password";
   static const String enterYourEmailForResetYourPassword = "Enter your email for reset your password.";
-  static const String submit = "Submit";
+  static const String add = "Add";
+  static const String update = "Update";
   static const String passwordResetLinkHasBeenSuccessfullySentToYourMailAddress = "Password reset link has been successfully sent to your mail address.";
   static const String addTask = "Add Task";
+  static const String updateTask = "Update Task";
   static const String title = "Title";
   static const String description = "Description";
   static const String pleaseEnterTitle = "Please enter title.";
   static const String pleaseEnterDescription = "Please enter description.";
   static const String someThingWentWrong = "Something went wrong!";
   static const String taskAddedSuccessfully = "Task added successfully.";
+  static const String taskUpdatedSuccessfully = "Task updated successfully.";
+  static const String noTaskAddedYet = "No task added yet.";
+  static const String tasks = "Tasks";
+  static const String loading = "Loading...";
 
 }

@@ -12,20 +12,18 @@ part 'add_task_state.dart';
 class AddTaskBloc extends Bloc<AddTaskEvent, AddTaskState> {
   final TaskRepository taskRepository;
 
-  AddTaskBloc(this.taskRepository)
-      : super(AddTaskInitial()) {
+  AddTaskBloc(this.taskRepository) : super(AddTaskInitial()) {
     on<AddTaskRequired>((event, emit) async {
-       try {
-          await taskRepository.addTask(event.task);
-          emit(AddTaskSuccess());
-          emit(AddTaskInitial());
-       } on FirebaseAuthException catch (e) {
-         Utility().debug(e.code);
+      try {
+        await taskRepository.addTask(event.task);
+        emit(const AddTaskSuccess());
+        emit(AddTaskInitial());
+      } on FirebaseAuthException catch (e) {
+        Utility().debug(e.code);
         emit(const AddTaskFailure(message: Strings.someThingWentWrong));
-       } catch (e) {
+      } catch (e) {
         emit(const AddTaskFailure());
-       }
+      }
     });
   }
 }
-
