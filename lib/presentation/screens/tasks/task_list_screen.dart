@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants/strings.dart';
 import '../../../core/enum/custom_scaffold_enum.dart';
-import '../../../core/utils/shared_preference_singleton.dart';
 import '../../../logic/bloc/sign_in_bloc/sign_in_bloc.dart';
 import '../../../logic/bloc/list_task_bloc/list_task_bloc.dart';
+import '../../../logic/cubit/theme_cubit.dart';
 import '../widgets/custom_scaffold.dart';
 
 class TaskListScreen extends StatefulWidget {
@@ -17,6 +17,7 @@ class TaskListScreen extends StatefulWidget {
 }
 
 class _TaskListScreenState extends State<TaskListScreen> {
+  bool isDarkTheme = false;
   @override
   void initState() {
     super.initState();
@@ -25,6 +26,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeCubit = context.read<ThemeCubit>();
+    isDarkTheme = themeCubit.state == ThemeMode.dark ? true : false;
     return CustomScaffold(
         appBartitle: Strings.tasks,
         costomScaffoldEnum: CustomScaffoldEnum.scaffoldWithSafeAreaWithAppBar,
@@ -35,15 +38,12 @@ class _TaskListScreenState extends State<TaskListScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              SharedPreferenceSingleton().setBool(
-                  SharedPreferenceSingleton.isDarkTheme,
-                  !SharedPreferenceSingleton()
-                      .getBool(SharedPreferenceSingleton.isDarkTheme));
+              themeCubit.toggleTheme();
+              setState(() {
+                isDarkTheme = !isDarkTheme;
+              });
             },
-            icon: Icon(SharedPreferenceSingleton()
-                    .getBool(SharedPreferenceSingleton.isDarkTheme)
-                ? Icons.light_mode
-                : Icons.dark_mode),
+            icon: Icon(isDarkTheme ? Icons.light_mode : Icons.dark_mode),
           ),
           IconButton(
             onPressed: () {
